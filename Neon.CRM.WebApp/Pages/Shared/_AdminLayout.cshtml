@@ -237,10 +237,6 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="authentication-register.html"
                                aria-expanded="false"><i class="mdi mdi-account-plus"></i><span class="hide-menu">Register</span></a>
                         </li>
-                        <li class="text-center p-40 upgrade-btn">
-                            <a href="https://www.wrappixel.com/templates/xtremeadmin/?ref=33"
-                               class="btn d-block w-100 btn-danger text-white" target="_blank">Upgrade to Pro</a>
-                        </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -272,12 +268,6 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="col-7">
-                        <div class="text-end upgrade-btn">
-                            <a href="https://www.wrappixel.com/templates/xtremeadmin/?ref=33" class="btn btn-danger text-white"
-                               target="_blank">Upgrade to Pro</a>
-                        </div>
-                    </div>
                 </div>
             </div>
             <!-- ============================================================== -->
@@ -294,7 +284,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                This is some text within a card block.
+                                @RenderBody()
                             </div>
                         </div>
                     </div>
@@ -317,8 +307,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                All Rights Reserved by Xtreme Admin. Designed and Developed by
-                <a href="https://www.wrappixel.com">WrapPixel</a>.
+                &copy; 2025 - Neon CRM - <a asp-area="" asp-page="/Privacy">Privacy</a>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -334,9 +323,9 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="~/libs/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="~/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/js/app-style-switcher.js"></script>
     <!--Wave Effects -->
     <script src="~/js/waves.js"></script>
