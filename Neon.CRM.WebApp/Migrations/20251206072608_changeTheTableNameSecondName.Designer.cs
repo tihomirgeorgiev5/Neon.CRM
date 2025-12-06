@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Neon.CRM.WebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251201162358_AddedCRMTables")]
-    partial class AddedCRMTables
+    [Migration("20251206072608_changeTheTableNameSecondName")]
+    partial class changeTheTableNameSecondName
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -183,6 +183,9 @@ namespace Neon.CRM.WebApp.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("text");
 
+                    b.Property<string>("SecondName")
+                        .HasColumnType("text");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
 
@@ -205,9 +208,6 @@ namespace Neon.CRM.WebApp.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
-
-                    b.Property<string>("SecondName")
-                        .HasColumnType("text");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
@@ -318,6 +318,32 @@ namespace Neon.CRM.WebApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VacationPackages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Enjoy a week in a tropical paradise with white sandy beaches and crystal-clear waters.",
+                            DurationInDays = 7,
+                            Price = 1999.99m,
+                            Title = "Tropical Paradise"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Experience the thrill of mountain climbing and hiking in breathtaking landscapes.",
+                            DurationInDays = 5,
+                            Price = 1499.99m,
+                            Title = "Mountain Adventure"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Discover ancient cities, rich history, and vibrant cultures on this unforgettable journey.",
+                            DurationInDays = 6,
+                            Price = 1799.99m,
+                            Title = "Cultural Exploration"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

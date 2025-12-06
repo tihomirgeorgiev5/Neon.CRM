@@ -110,7 +110,7 @@ namespace Neon.CRM.WebApp.Areas.Identity.Pages.Account
             public string LastName { get; set; }
         }
 
-
+        
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;

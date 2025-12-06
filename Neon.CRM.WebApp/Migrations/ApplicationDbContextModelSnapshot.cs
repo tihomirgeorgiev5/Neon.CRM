@@ -203,7 +203,7 @@ namespace Neon.CRM.WebApp.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("SecondName")
                         .HasColumnType("text");
 
                     b.Property<string>("SecurityStamp")
@@ -280,7 +280,7 @@ namespace Neon.CRM.WebApp.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("SecondName")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
