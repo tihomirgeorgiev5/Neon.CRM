@@ -260,7 +260,7 @@ namespace Neon.CRM.WebApp.Migrations
                     b.ToTable("Bookings");
                 });
 
-            modelBuilder.Entity("Neon.CRM.WebApp.Data.Models.Customer", b =>
+            modelBuilder.Entity("Neon.CRM.WebApp.Data.Models.Customers", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -373,7 +373,7 @@ namespace Neon.CRM.WebApp.Migrations
 
             modelBuilder.Entity("Neon.CRM.WebApp.Data.Models.Booking", b =>
                 {
-                    b.HasOne("Neon.CRM.WebApp.Data.Models.Customer", "Customer")
+                    b.HasOne("Neon.CRM.WebApp.Data.Models.Customers", "Customers")
                         .WithMany("Bookings")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -385,12 +385,12 @@ namespace Neon.CRM.WebApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Customer");
+                    b.Navigation("Customers");
 
                     b.Navigation("VacationPackage");
                 });
 
-            modelBuilder.Entity("Neon.CRM.WebApp.Data.Models.Customer", b =>
+            modelBuilder.Entity("Neon.CRM.WebApp.Data.Models.Customers", b =>
                 {
                     b.HasOne("Neon.CRM.WebApp.Data.Models.Agent", "Agent")
                         .WithMany("Customers")
@@ -404,7 +404,7 @@ namespace Neon.CRM.WebApp.Migrations
                     b.Navigation("Customers");
                 });
 
-            modelBuilder.Entity("Neon.CRM.WebApp.Data.Models.Customer", b =>
+            modelBuilder.Entity("Neon.CRM.WebApp.Data.Models.Customers", b =>
                 {
                     b.Navigation("Bookings");
                 });
