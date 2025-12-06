@@ -21,7 +21,15 @@ namespace Neon.CRM.WebApp.Pages.Customers
 
         public IActionResult OnGet()
         {
-        ViewData["AgentId"] = new SelectList(_context.Users, "Id", "Id");
+            var agents = _context.Users
+                .Select(u => 
+                    new {
+                         u.Id,
+                         FullName = $"{u.FirstName} {u.SecondName}"
+                    }
+                )
+                .ToList();
+        ViewData["AgentId"] = new SelectList(agents, "Id", "FullName");
             return Page();
         }
 
