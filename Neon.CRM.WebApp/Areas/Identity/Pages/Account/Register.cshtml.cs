@@ -107,7 +107,7 @@ namespace Neon.CRM.WebApp.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
 
-            public string LastName { get; set; }
+            public string SecondName { get; set; }
         }
 
         
@@ -127,6 +127,8 @@ namespace Neon.CRM.WebApp.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                user.FirstName = Input.FirstName;
+                user.SecondName = Input.SecondName;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
