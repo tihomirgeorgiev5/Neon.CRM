@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Neon.CRM.WebApp.Data.Models;
+using Neon.CRM.WebApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Neon.CRM.WebApp.Areas.Identity.Pages.Account
 {
