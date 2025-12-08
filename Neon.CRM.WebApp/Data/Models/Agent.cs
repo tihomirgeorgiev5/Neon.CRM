@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Neon.CRM.WebApp.Data.Models
 {
@@ -11,6 +12,9 @@ namespace Neon.CRM.WebApp.Data.Models
         // Navigation property
 
         public ICollection<Customer> Customers { get; set; } = [];
+
+        [NotMapped]
+        public string FullName => $"{FirstName} {SecondName}".Trim();
 
     }
 }

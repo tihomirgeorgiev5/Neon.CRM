@@ -28,7 +28,9 @@ namespace Neon.CRM.WebApp.Pages.Customers
                 return NotFound();
             }
 
-            var customer = await _context.Customers.FirstOrDefaultAsync(m => m.Id == id);
+            var customer = await _context.Customers
+                .Include(a => a.Agent)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (customer is not null)
             {

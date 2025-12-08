@@ -36,7 +36,15 @@ namespace Neon.CRM.WebApp.Pages.Customers
                 return NotFound();
             }
             Customer = customer;
-           ViewData["AgentId"] = new SelectList(_context.Users, "Id", "Id");
+            var agents = _context.Users
+                  .Select(u =>
+                      new {
+                          u.Id,
+                          u.FullName
+                      }
+                  )
+                  .ToList();
+            ViewData["AgentId"] = new SelectList(agents, "Id", "FullName");
             return Page();
         }
 

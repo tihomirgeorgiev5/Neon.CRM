@@ -25,7 +25,7 @@ namespace Neon.CRM.WebApp.Pages.Customers
                 .Select(u => 
                     new {
                          u.Id,
-                         FullName = $"{u.FirstName} {u.SecondName}"
+                         u.FullName
                     }
                 )
                 .ToList();
