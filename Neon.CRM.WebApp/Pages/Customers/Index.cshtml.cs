@@ -24,6 +24,7 @@ public class IndexModel : PageModel
     public async Task OnGetAsync()
     {
         Customers = await _context.Customers
-            .Include(c => c.Agent).ToListAsync();
+            .Include(c => c.Agent)
+            .ToListAsync();
     }
 }

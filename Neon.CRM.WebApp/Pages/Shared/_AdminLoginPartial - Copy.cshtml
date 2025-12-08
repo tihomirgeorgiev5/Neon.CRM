@@ -6,7 +6,7 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-        <li class="sidebar-item">
+        <li>
             <!-- User Profile-->
             <div class="user-profile d-flex no-block dropdown m-t-20">
                 <div class="user-pic">
@@ -18,7 +18,7 @@
                         <h5 class="m-b-0 user-name font-medium">
                             Hello @User.Identity?.Name! <i class="mdi mdi-chevron-down fs-4"></i>
                         </h5>
-                        Hello@* <span class="op-5 user-email">varun@gmail.com</span> *@
+                        @* <span class="op-5 user-email">varun@gmail.com</span> *@
                     </a>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="Userdd">
                         <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">
@@ -28,10 +28,7 @@
                         <div class="dropdown-divider"></div>
                         <div class="dropdown-item">
                             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                                <button type="submit" class="nav-link btn btn-link text-dark">
-                                    <i class="mdi mdi-power m-r-5 m-l-5"></i>
-                                    Logout
-                                </button>
+                                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
                             </form>
                         </div>
                     </div>
