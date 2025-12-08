@@ -49,6 +49,8 @@ namespace Neon.CRM.WebApp.Pages.Bookings
             {
                 return Page();
             }
+            // Ensure BookingDate is stored in UTC
+            Booking.BookingDate = Booking.BookingDate.ToUniversalTime();
 
             _context.Attach(Booking).State = EntityState.Modified;
 
