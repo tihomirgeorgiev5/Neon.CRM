@@ -21,8 +21,8 @@ namespace Neon.CRM.WebApp.Pages.Bookings
 
         public IActionResult OnGet()
         {
-        ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id");
-        ViewData["VacationPackageId"] = new SelectList(_context.VacationPackages, "Id", "Id");
+        ViewData["Customers"] = new SelectList(_context.Customers, "Id", "FullName");
+        ViewData["VacationPackageId"] = new SelectList(_context.VacationPackages, "Id", "Title");
             return Page();
         }
 

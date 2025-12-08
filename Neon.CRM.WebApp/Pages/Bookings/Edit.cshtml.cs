@@ -36,8 +36,8 @@ namespace Neon.CRM.WebApp.Pages.Bookings
                 return NotFound();
             }
             Booking = booking;
-           ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id");
-           ViewData["VacationPackageId"] = new SelectList(_context.VacationPackages, "Id", "Id");
+           ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "FullName");
+           ViewData["VacationPackageId"] = new SelectList(_context.VacationPackages, "Id", "Title");
             return Page();
         }
 

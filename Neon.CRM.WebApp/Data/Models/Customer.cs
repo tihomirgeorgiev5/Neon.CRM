@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Neon.CRM.WebApp.Data.Models
 {
@@ -23,6 +24,9 @@ namespace Neon.CRM.WebApp.Data.Models
         // Navigation property
 
         public ICollection<Booking> Bookings { get; set; } = [];
+
+        [NotMapped]
+        public string FullName => $"{FirstName} {SecondName}".Trim();
 
     }
 }

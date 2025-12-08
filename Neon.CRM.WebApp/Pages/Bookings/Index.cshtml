@@ -14,7 +14,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Booking[0].BookingDate)
+                Booking Date
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Booking[0].IsConfirmed)
@@ -38,15 +38,15 @@
                 @Html.DisplayFor(modelItem => item.IsConfirmed)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.Id)
+                @Html.DisplayFor(modelItem => item.Customer.FullName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.VacationPackage.Id)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@item.Id">Edit</a> 
+                <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }
