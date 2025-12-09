@@ -29,7 +29,10 @@ namespace Neon.CRM.WebApp.Pages.Bookings
                 return NotFound();
             }
 
-            var booking = await _context.Bookings.FirstOrDefaultAsync(m => m.Id == id);
+            var booking = await _context.Bookings
+                .Include(b => b.Customer)
+                .Include(b => b.VacationPackage)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (booking is not null)
             {
