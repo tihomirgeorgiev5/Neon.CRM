@@ -15,23 +15,7 @@ public class NeonService
     }
 }
 
-public class Rootobject
-{
-    public Endpoint[] endpoints { get; set; }
-    public Branch branch { get; set; }
-}
 
-public class Branch
-{
-    public string parent_id { get; set; }
-    public string init_source { get; set; }
-    public string name { get; set; }
-}
-
-public class Endpoint
-{
-    public string type { get; set; }
-}
 
 
 
