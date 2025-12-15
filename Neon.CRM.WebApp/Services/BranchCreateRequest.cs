@@ -2,7 +2,7 @@
 
 
 
-public class Rootobject
+public class BranchCreateRequest
 {
     public Endpoint[] endpoints { get; set; }
     public Branch branch { get; set; }
