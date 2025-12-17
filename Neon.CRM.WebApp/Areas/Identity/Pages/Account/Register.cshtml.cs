@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Neon.CRM.WebApp.Data.Models;
+using Neon.CRM.WebApp.Services;
 
 namespace Neon.CRM.WebApp.Areas.Identity.Pages.Account
 {
@@ -30,13 +31,15 @@ namespace Neon.CRM.WebApp.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<Agent> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly INeonService _neonService;
 
         public RegisterModel(
             UserManager<Agent> userManager,
             IUserStore<Agent> userStore,
             SignInManager<Agent> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            INeonService neonService)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,6 +47,7 @@ namespace Neon.CRM.WebApp.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            this._neonService = neonService;
         }
 
         /// <summary>
@@ -147,6 +151,13 @@ namespace Neon.CRM.WebApp.Areas.Identity.Pages.Account
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
+                    // Create a branch in Neon for the new user
+                    var tenantName = userId;
+                    var branchResponse = await _neonService.CreateBranchAsync(tenantName);
+                    var connectionString = $"";
+
+                    //Update the user's connection string
+                    user.TenantConnectionString = connectionString;
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });

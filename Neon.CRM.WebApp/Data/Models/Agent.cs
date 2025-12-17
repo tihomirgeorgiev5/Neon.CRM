@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Neon.CRM.WebApp.Data.Models
 {
@@ -8,6 +9,8 @@ namespace Neon.CRM.WebApp.Data.Models
         public string? FirstName { get; set; }
 
         public string? SecondName { get; set; }
+
+        public string? TenantConnectionString { get; set; }
 
         // Navigation property
 
