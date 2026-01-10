@@ -18,6 +18,8 @@ builder.Services.AddDefaultIdentity<Agent>(options => options.SignIn.RequireConf
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddHttpClient<INeonService, NeonService>();
+builder.Services.AddScoped<TenantDbContextFactory>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
