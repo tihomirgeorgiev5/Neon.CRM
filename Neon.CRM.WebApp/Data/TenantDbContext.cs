@@ -23,8 +23,22 @@ namespace Neon.CRM.WebApp.Data
 
     public class TenantDbContextFactory
     {
-        public static TenantDbContext Create(string connectionString)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public TenantDbContextFactory(IHttpContextAccessor httpContextAccessor)
         {
+            _httpContextAccessor = httpContextAccessor;
+        }
+
+        public TenantDbContext Create()
+        {
+            var user =_httpContextAccessor.HttpContext?.User;
+            var connectionString = user?.FindFirst("TenantConnectionString")?.Value;
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new InvalidOperationException("Tenant connection string is not available.");
+            }
+
             var optionsBuilder = new DbContextOptionsBuilder<TenantDbContext>();
             optionsBuilder.UseNpgsql(connectionString);
             return new TenantDbContext(optionsBuilder.Options);
