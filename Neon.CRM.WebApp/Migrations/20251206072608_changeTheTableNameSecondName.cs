@@ -10,19 +10,19 @@ namespace Neon.CRM.WebApp.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
+           /* migrationBuilder.RenameColumn(
                 name: "SecondName",
                 table: "Customers",
-                newName: "SecondName");
+                newName: "SecondName");*/
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
+           /* migrationBuilder.RenameColumn(
                 name: "SecondName",
                 table: "Customers",
-                newName: "SecondName");
+                newName: "SecondName");*/
         }
     }
 }

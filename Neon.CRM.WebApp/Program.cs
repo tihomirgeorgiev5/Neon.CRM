@@ -9,9 +9,9 @@ using Neon.CRM.WebApp.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("NeonCRMConnection") ?? throw new InvalidOperationException("Connection string 'NeonCRMConnection' not found.");
+//var connectionString = builder.Configuration.GetConnectionString("NeonCRMConnection") ?? throw new InvalidOperationException("Connection string 'NeonCRMConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("NeonCRMConnection")));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<Agent>(options => options.SignIn.RequireConfirmedAccount = true)
