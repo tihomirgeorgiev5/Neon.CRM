@@ -51,4 +51,3 @@ namespace Neon.CRM.WebApp.Data;
         }
     }
 
-

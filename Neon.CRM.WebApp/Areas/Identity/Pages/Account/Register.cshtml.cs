@@ -155,7 +155,7 @@ namespace Neon.CRM.WebApp.Areas.Identity.Pages.Account
                     var tenantName = userId;
                     var branchResponse = await _neonService.CreateBranchAsync(tenantName);
                     var connectionString = $"Host={branchResponse.connection_uris[0].connection_parameters.pooler_host}; Database=neondb; Username=neondb_owner; Password=npg_IhQfM7bAkjo8; SSL Mode=VerifyFull; Channel Binding=Require;";
-
+                    
                     //Update the user's connection string
                     user.TenantConnectionString = connectionString;
                     // TODO: Encrypt connection string before storage

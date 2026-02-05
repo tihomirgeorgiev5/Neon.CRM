@@ -3,15 +3,16 @@ using Microsoft.Extensions.Options;
 using Neon.CRM.WebApp.Data.Models;
 using System.Security.Claims;
 
-namespace Neon.CRM.WebApp.Providers;
-
+namespace Neon.CRM.WebApp.Providers
+{
     public class CustomUserClaimsPrincipalFactory : UserClaimsPrincipalFactory<Agent>
     {
         public CustomUserClaimsPrincipalFactory(
             UserManager<Agent> userManager,
             IOptions<IdentityOptions> optionsAccessor)
-        : base(userManager, optionsAccessor)
-    { }
+            : base(userManager, optionsAccessor)
+        {
+        }
 
         protected override async Task<ClaimsIdentity> GenerateClaimsAsync(Agent user)
         {
@@ -19,7 +20,5 @@ namespace Neon.CRM.WebApp.Providers;
             identity.AddClaim(new Claim("TenantConnectionString", user?.TenantConnectionString ?? string.Empty));
             return identity;
         }
-
-
     }
-
+}

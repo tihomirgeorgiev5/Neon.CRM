@@ -34,8 +34,7 @@ public class NeonService : INeonService
             {
                 new Endpoint
                 {
-                    type = "read-write" +
-                    ""
+                    type = "read-write",
                 }
             }
         };
