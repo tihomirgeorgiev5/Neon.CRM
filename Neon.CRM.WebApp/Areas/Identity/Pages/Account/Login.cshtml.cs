@@ -121,6 +121,7 @@ namespace Neon.CRM.WebApp.Areas.Identity.Pages.Account
                         context.Users.Add(tenantUser);
                         await context.SaveChangesAsync();
                     }
+                    
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

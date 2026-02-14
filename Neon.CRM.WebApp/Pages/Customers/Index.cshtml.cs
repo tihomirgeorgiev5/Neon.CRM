@@ -22,4 +22,5 @@ public class IndexModel(TenantDbContextFactory tenantDbContextFactory) : PageMod
             .Include(c => c.Agent)
             .ToListAsync();
     }
+    
 }

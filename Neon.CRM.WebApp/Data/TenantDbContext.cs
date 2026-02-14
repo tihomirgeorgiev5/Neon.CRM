@@ -2,8 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Neon.CRM.WebApp.Data.Models;
 
-namespace Neon.CRM.WebApp.Data
-{
+namespace Neon.CRM.WebApp.Data;
+
     public class TenantDbContext : IdentityDbContext<Agent>
     {
         public TenantDbContext(DbContextOptions<TenantDbContext> options)
@@ -21,14 +21,25 @@ namespace Neon.CRM.WebApp.Data
         }
     }
 
-    public class TenantDbContextFactory
-    {
-        public static TenantDbContext Create(string connectionString)
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<TenantDbContext>();
-            optionsBuilder.UseNpgsql(connectionString);
-            return new TenantDbContext(optionsBuilder.Options);
-        }
-    }
+public class TenantDbContextFactory
+{
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
+    public TenantDbContextFactory(IHttpContextAccessor httpContextAccessor)
+    {
+        this._httpContextAccessor = httpContextAccessor;
+    }
+    public TenantDbContext Create()
+    {
+        var user = _httpContextAccessor.HttpContext?.User;
+        var connectionString = user.FindFirst("TenantConnectionString")?.Value;
+        var optionsBuilder = new DbContextOptionsBuilder<TenantDbContext>();
+        optionsBuilder.UseNpgsql(connectionString);
+        return new TenantDbContext(optionsBuilder.Options);
+    }
+    
 }
+
+
+
+
