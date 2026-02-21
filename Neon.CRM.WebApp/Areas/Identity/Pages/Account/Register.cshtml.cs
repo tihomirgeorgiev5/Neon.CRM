@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Neon.CRM.WebApp.Data.Models;
+using Neon.CRM.WebApp.Helpers;
 using Neon.CRM.WebApp.Services;
 
 namespace Neon.CRM.WebApp.Areas.Identity.Pages.Account
@@ -32,6 +33,7 @@ namespace Neon.CRM.WebApp.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly INeonService _neonService;
+        private readonly IConfiguration _configuration;
 
         public RegisterModel(
             UserManager<Agent> userManager,
@@ -39,7 +41,8 @@ namespace Neon.CRM.WebApp.Areas.Identity.Pages.Account
             SignInManager<Agent> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            INeonService neonService)
+            INeonService neonService,
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -48,6 +51,7 @@ namespace Neon.CRM.WebApp.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
             this._neonService = neonService;
+             this._configuration = configuration;
         }
 
         /// <summary>
@@ -155,9 +159,9 @@ namespace Neon.CRM.WebApp.Areas.Identity.Pages.Account
                     var tenantName = userId;
                     var branchResponse = await _neonService.CreateBranchAsync(tenantName);
                     var connectionString = $"Host={branchResponse.connection_uris[0].connection_parameters.pooler_host}; Database=neondb; Username=neondb_owner; Password=npg_IhQfM7bAkjo8; SSL Mode=VerifyFull; Channel Binding=Require;";
-                    
+
                     //Update the user's connection string
-                    user.TenantConnectionString = connectionString;
+                    user.TenantConnectionString = EncryptionHelper.Encrypt(connectionString, _configuration["ENCRYPTION KEY"]);
                     // TODO: Encrypt connection string before storage
 
                     await _userManager.UpdateAsync(user);
