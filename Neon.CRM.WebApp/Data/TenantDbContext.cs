@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Neon.CRM.WebApp.Data.Models;
+using Neon.CRM.WebApp.Helpers;
 
 namespace Neon.CRM.WebApp.Data;
 
@@ -24,17 +25,27 @@ namespace Neon.CRM.WebApp.Data;
 public class TenantDbContextFactory
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IConfiguration _configuration;
 
-    public TenantDbContextFactory(IHttpContextAccessor httpContextAccessor)
+    public TenantDbContextFactory(IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
     {
         this._httpContextAccessor = httpContextAccessor;
+        this._configuration = configuration;
     }
     public TenantDbContext Create()
     {
         var user = _httpContextAccessor.HttpContext?.User;
         var connectionString = user.FindFirst("TenantConnectionString")?.Value;
+
+        if (string.IsNullOrEmpty(connectionString))
+        {
+            throw new InvalidOperationException("Tenant connection string is not available.");
+        }
+        var decryptedConnectionString = EncryptionHelper.Decrypt(connectionString, _configuration["ENCRYPTION KEY"]);
+
+
         var optionsBuilder = new DbContextOptionsBuilder<TenantDbContext>();
-        optionsBuilder.UseNpgsql(connectionString);
+        optionsBuilder.UseNpgsql(decryptedConnectionString);
         return new TenantDbContext(optionsBuilder.Options);
     }
     
