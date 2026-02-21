@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Neon.CRM.WebApp.Data.Models
-{
+namespace Neon.CRM.WebApp.Data.Models;
+
     public class Customer
     {
-        [Key]
+        
         public int Id { get; set; }
         public string? FirstName { get; set; }
 
@@ -29,4 +29,4 @@ namespace Neon.CRM.WebApp.Data.Models
         public string FullName => $"{FirstName} {SecondName}".Trim();
 
     }
-}
+
